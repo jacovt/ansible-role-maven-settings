@@ -9,4 +9,22 @@
 {% endif %}
     </pluginGroups>
 
+    <mirrors>
+{% if maven_settings.maven_mirrors is defined %}
+{% for mirror in maven_settings.maven_mirrors %}
+        <mirror>
+{% if mirror.id is defined %}
+            <id>{{ mirror.id }}</id>
+{% endif %}
+{% if mirror.mirrorOf is defined %}
+            <mirrorOf>{{ mirror.mirrorOf }}</mirrorOf>
+{% endif %}
+{% if mirror.url is defined %}
+            <url>{{ mirror.url }}</url>
+{% endif %}
+        </mirror>
+{% endfor %}
+{% endif %}
+    </mirrors>
+
 </settings>
