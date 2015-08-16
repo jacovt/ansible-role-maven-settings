@@ -1,2 +1,7 @@
 ---
 # tasks file for jacovt.maven-settings
+
+- name: Create maven settings file
+  template:
+    src=settings.xml.j2
+    dest={{maven_settings_path}}/settings.xml
