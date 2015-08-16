@@ -27,4 +27,20 @@
 {% endif %}
     </mirrors>
 
+    <servers>
+{% if maven_settings.maven_servers is defined %}
+{% for item in maven_settings.maven_servers %}
+        <server>
+            <id>{{ item.id }}</id>
+{% if item.username is defined %}
+            <username>{{ item.username }}</username>
+{% endif %}
+{% if item.password is defined %}
+            <password>{{ item.password }}</password>
+{% endif %}
+        </server>
+{% endfor %}
+{% endif %}
+    </servers>
+
 </settings>
