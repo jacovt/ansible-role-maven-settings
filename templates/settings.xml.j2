@@ -43,4 +43,37 @@
 {% endif %}
     </servers>
 
+    <proxies>
+{% if maven_settings.maven_proxies is defined %}
+{% for proxy in maven_settings.maven_proxies %}
+        <proxy>
+{% if proxy.id is defined %}
+            <id>{{ proxy.id }}</id>
+{% endif %}
+{% if proxy.active is defined %}
+            <active>{{ proxy.active }}</active>
+{% endif %}
+{% if proxy.protocol is defined %}
+            <protocol>{{ proxy.protocol }}</protocol>
+{% endif %}
+{% if proxy.host is defined %}
+            <host>{{ proxy.host }}</host>
+{% endif %}
+{% if proxy.port is defined %}
+            <port>{{ proxy.port }}</port>
+{% endif %}
+{% if proxy.username is defined %}
+            <username>{{ proxy.username }}</username>
+{% endif %}
+{% if proxy.password is defined %}
+            <password>{{ proxy.password }}</password>
+{% endif %}
+{% if proxy.nonProxyHosts is defined %}
+            <nonProxyHosts>{{ proxy.nonProxyHosts }}</nonProxyHosts>
+{% endif %}
+        </proxy>
+{% endfor %}
+{% endif %}
+    </proxies>
+
 </settings>
