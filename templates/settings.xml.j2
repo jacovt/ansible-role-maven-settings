@@ -43,6 +43,92 @@
 {% endif %}
     </servers>
 
+    <profiles>
+{% if maven_settings.maven_profiles is defined %}
+{% for item in maven_settings.maven_profiles %}
+        <profile>
+            <id>{{ item.id }}</id>
+            <repositories>
+{% if item.repositories is defined %}
+{% for repo in item.repositories %}
+                <repository>
+                    <id>{{ repo.id }}</id>
+{% if repo.url is defined %}
+                    <url>{{ repo.url }}</url>
+{% endif %}
+                    <releases>
+{% if repo.enableReleases is defined %}
+                        <enabled>{{ repo.enableReleases }}</enabled>
+{% else %}
+                        <enabled>false</enabled>
+{% endif %}
+{% if repo.updatePolicyReleases is defined %}
+                        <updatePolicy>{{ repo.updatePolicyReleases }}</updatePolicy>
+{% endif %}
+{% if repo.checksumPolicyReleases is defined %}
+                        <checksumPolicy>{{ repo.checksumPolicyReleases }}</checksumPolicy>
+{% endif %}
+                    </releases>
+                    <snapshots>
+{% if repo.enableSnapshots is defined %}
+                        <enabled>{{ repo.enableSnapshots }}</enabled>
+{% else %}
+                        <enabled>false</enabled>
+{% endif %}
+{% if repo.updatePolicySnapshots is defined %}
+                        <updatePolicy>{{ repo.updatePolicySnapshots }}</updatePolicy>
+{% endif %}
+{% if repo.checksumPolicySnapshots is defined %}
+                        <checksumPolicy>{{ repo.checksumPolicySnapshots }}</checksumPolicy>
+{% endif %}
+                    </snapshots>
+                </repository>
+{% endfor %}
+{% endif %}
+            </repositories>
+            <pluginRepositories>
+{% if item.pluginRepositories is defined %}
+{% for repo in item.pluginRepositories %}
+                <pluginRepository>
+                    <id>{{ repo.id }}</id>
+{% if repo.url is defined %}
+                    <url>{{ repo.url }}</url>
+{% endif %}
+                    <releases>
+{% if repo.enableReleases is defined %}
+                        <enabled>{{ repo.enableReleases }}</enabled>
+{% else %}
+                        <enabled>false</enabled>
+{% endif %}
+{% if repo.updatePolicyReleases is defined %}
+                        <updatePolicy>{{ repo.updatePolicyReleases }}</updatePolicy>
+{% endif %}
+{% if repo.checksumPolicyReleases is defined %}
+                        <checksumPolicy>{{ repo.checksumPolicyReleases }}</checksumPolicy>
+{% endif %}
+                    </releases>
+                    <snapshots>
+{% if repo.enableSnapshots is defined %}
+                        <enabled>{{ repo.enableSnapshots }}</enabled>
+{% else %}
+                        <enabled>false</enabled>
+{% endif %}
+{% if repo.updatePolicySnapshots is defined %}
+                        <updatePolicy>{{ repo.updatePolicySnapshots }}</updatePolicy>
+{% endif %}
+{% if repo.checksumPolicySnapshots is defined %}
+                        <checksumPolicy>{{ repo.checksumPolicySnapshots }}</checksumPolicy>
+{% endif %}
+                    </snapshots>
+                </pluginRepository>
+{% endfor %}
+{% endif %}
+            </pluginRepositories>
+        </profile>
+{% endfor %}
+{% endif %}
+    </profiles>
+
     <proxies>
 {% if maven_settings.maven_proxies is defined %}
 {% for proxy in maven_settings.maven_proxies %}
