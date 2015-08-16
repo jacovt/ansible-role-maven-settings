@@ -48,6 +48,15 @@
 {% for item in maven_settings.maven_profiles %}
         <profile>
             <id>{{ item.id }}</id>
+{% if item.profile_properties is defined %}
+            <properties>
+{% for prop in item.profile_properties %}
+{% if prop.propertyKey is defined and prop.propertyValue is defined %}
+                <{{ prop.propertyKey }}>{{ prop.propertyValue }}</{{ prop.propertyKey }}>
+{% endif %}
+{% endfor %}
+            </properties>
+{% endif %}
             <repositories>
 {% if item.repositories is defined %}
 {% for repo in item.repositories %}
